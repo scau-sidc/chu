@@ -7,6 +7,7 @@ import static com.github.cuter44.nyafx.dao.EntityNotFoundException.entFound;
 
 import com.github.scausidc.chu.conf.*;
 import com.github.scausidc.chu.user.model.*;
+import com.github.scausidc.chu.user.dao.*;
 
 /** 缓存用户的 secret 以为签名验证提供加速
  */

@@ -14,6 +14,7 @@ import static com.github.scausidc.chu.Constants.*;
 import static com.github.scausidc.chu.nyafx.hj.Jsonizer.*;
 import com.github.scausidc.chu.conf.*;
 import com.github.scausidc.chu.user.model.*;
+import com.github.scausidc.chu.user.dao.*;
 import com.github.scausidc.chu.user.core.*;
 
 /** 搜索用户, 主要用于用户 uid, mail, uname.

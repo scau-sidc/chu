@@ -13,6 +13,7 @@ import com.github.cuter44.nyafx.event.*;
 import org.hibernate.criterion.*;
 
 import com.github.scausidc.chu.user.model.*;
+import com.github.scausidc.chu.user.dao.*;
 import com.github.scausidc.chu.user.exception.*;
 import com.github.scausidc.chu.conf.*;
 import static com.github.scausidc.chu.Constants.*;
