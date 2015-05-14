@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body style='font:12px sans-serif'>
+    <div style="float:left; width:270px">
+      <style>
+        h5 {
+          font: 700 13px sans-serif;
+          margin-bottom: 0.67em;
+        }
+
+        dt {
+          margin-top: 6px;
+          font-family: monospace;
+        }
+
+        dd {
+          margin-left: 16px;
+        }
+
+        .indent {
+          margin-left: 16px;
+        }
+
+        .method {
+          color:#008800;
+        }
+
+        .uri {
+          color:#000088;
+        }
+
+        .todo {
+          color:#808080;
+          font-style: italic;
+        }
+
+      </style>
+      <div id="page-warp" class="indent" >
+        这是一个人工维护的 API 速查表. 无法保证他总是新的.
+        <br />
+        <h5>系统</h5>
+        <dl class="indent">
+          <dt><span class="method">GET</span> <span class="uri">/sys/exception.api</span>
+          <a href="com/github/scausidc/chu/nyafx/servlet/ExceptionHandler.html" target="javadoc">→</a>
+          <dd>通用错误代码解析/服务器存活确认
+        </dl>
+
+        <h5>用户</h5>
+        <dl class="indent">
+          <dt><i>需要 SSH 登录到服务器</i>
+          <dd>创建/删除管理员
+
+          <dt><span class="method">POST</span> <span class="uri">/user/login.api</span>
+          <a href="com/github/scausidc/chu/user/servlet/Login.html" target="javadoc">→</a>
+          <dd>登录
+          
+          <dt><span class="method">POST</span> <span class="uri">/user/logout-via-pass.api</span>
+          <a href="com/github/scausidc/chu/user/servlet/LogoutViaPass.html" target="javadoc">→</a>
+          <dd>登出
+          
+          <dt><span class="method">POST</span> <span class="uri">/user/logout-via-secret.api</span>
+          <a href="com/github/scausidc/chu/user/servlet/LogoutViaSecret.html" target="javadoc">→</a>
+          <dd>登出
+          
+          <dt><span class="method">POST</span> <span class="uri">/user/passwd.api</span>
+          <a href="com/github/scausidc/chu/user/servlet/Passwd.html" target="javadoc">→</a>
+          <dd>修改密码
+
+          <dt><span class="method">POST</span> <span class="uri">/security/get-rsa-key.api</span>
+          <a href="com/github/scausidc/chu/user/servlet/GetRsaKey.html" target="javadoc">→</a>
+          <dd>获取 RSA 公钥
+
+          <dt><span class="method">GET/POST</span> <span class="uri">/user/search.api</span>
+          <a href="com/github/scausidc/chu/user/servlet/UserSearch.html" target="javadoc">→</a>
+          <dd>查找用户
+
+          <dt><span class="method">GET/POST</span> <span class="uri">/security/vrfy-sign.api</span>
+          <a href="com/github/scausidc/chu/user/servlet/VrfySign.html" target="javadoc">→</a>
+          <dd>[调试]验签
+        </dl>
+
+        <h5>抽奖配置</h5>
+        <dl class="indent">
+          <dt><span class="method">POST</span> <span class="uri">/raffle/raffle.api</span>
+          <a href="com/github/scausidc/chu/raffle/servlet/RaffleCRUD.html" target="javadoc">→</a>
+          <dd>创建/修改/删除抽奖
+
+          <dt><span class="method">POST</span> <span class="uri">/raffle/enable.api</span>
+          <a href="com/github/scausidc/chu/raffle/servlet/RaffleEnable.html" target="javadoc">→</a>
+          <dd>启动/继续抽奖
+
+          <dt><span class="method">POST</span> <span class="uri">/raffle/disable.api</span>
+          <a href="com/github/scausidc/chu/raffle/servlet/RaffleDisable.html" target="javadoc">→</a>
+          <dd>中止抽奖
+
+          <dt><span class="method">POST</span> <span class="uri">/raffle/evaluate.api</span>
+          <a href="com/github/scausidc/chu/raffle/servlet/Evaluate.html" target="javadoc">→</a>
+          <dd>模拟抽奖
+        </dl>
+
+        <h5>附件</h5>
+        <dl class="indent">
+          <dt class="del"><span class="method">POST</span> <span class="uri">/asset/images/image-meta.api</span>
+          <a href="com/github/scausidc/chu/images/servlet/ImageMetaCRUD.html" target="javadoc">→</a>
+          <dd>上传/删除图像(未支持)
+          
+          <dt class="del"><span class="method">GET</span> <span class="uri">/asset/images/${hashed}.jpg</span>
+          <dd>取得图像(未支持)
+        </dl>
+
+
+      </div>
+    </div>
+    <div style="position:fixed; top:0px; bottom:0px; left:290px; right:0px;">
+      <iframe name="javadoc" style="border:0px; width:100%; height:100%;" src="data:text/html,<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  </head><body><div style='margin-top:120px; width:100%; text-align:center; font:400 13px sans-serif;'>←(￣▽￣～) 选择一个API...</div></body></html>"></iframe>
+    </div>
+  </body>
+</html>
