@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.github.scausidc.chu.raffle.model.Awarded" table="raffle_awarded">
+        <id	name="id" type="long">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="raffle" type="long" />
+        <property name="award" type="int" />
+
+        <property name="passcode" type="binary" length="8" />
+
+        <property name="redeemed" type="boolean" />
+
+    </class>
+</hibernate-mapping>

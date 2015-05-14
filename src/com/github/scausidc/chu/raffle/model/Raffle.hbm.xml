@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.github.scausidc.chu.raffle.model.Raffle" table="raffle_raffle">
+        <id	name="id" type="long">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="title" type="string" length="63" />
+        <property name="metainfo" type="text" length="32765" />
+        <property name="enabled" type="boolean" />
+        <property name="disableOnExhausted" type="boolean" />
+
+        <property name="peerPending" type="int" />
+
+        <property name="fallbackEnabled" type="boolean" />
+
+        <array name="awardName" table="raffle_raffle_awardname">
+          <key column="raffle_raffle_id" />
+          <list-index column="raffle_raffle_awardname_key" />
+          <element type="string" column="raffle_raffle_awardname_value" />
+        </array>
+
+        <array name="awardImage" table="raffle_raffle_awardimage">
+          <key column="raffle_raffle_id" />
+          <list-index column="raffle_raffle_awardiamge_key" />
+          <element type="string" length="32" column="raffle_raffle_awardiamge_value" />
+        </array>
+
+        <array name="awardCapacity" table="raffle_raffle_awardcapacity">
+          <key column="raffle_raffle_id" />
+          <list-index column="raffle_raffle_awardcapacity_key" />
+          <element type="int" length="63" column="raffle_raffle_awardcapacity_value" />
+        </array>
+
+        <array name="awardShewing" table="raffle_raffle_awardshewing">
+          <key column="raffle_raffle_id" />
+          <list-index column="raffle_raffle_awardshewing_key" />
+          <element type="int" column="raffle_raffle_awardshewing_value" />
+        </array>
+
+        <array name="awardSlicing" table="raffle_raffle_awardslicing">
+          <key column="raffle_raffle_id" />
+          <list-index column="raffle_raffle_awardslicing_key" />
+          <element type="int" column="raffle_raffle_awardslicing_value" />
+        </array>
+
+    </class>
+</hibernate-mapping>

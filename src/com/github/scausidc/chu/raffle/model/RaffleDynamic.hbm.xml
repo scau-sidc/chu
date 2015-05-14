@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.github.scausidc.chu.raffle.model.RaffleDynamic" table="raffle_raffledynamic">
+        <id name="id" type="long">
+            <generator class="assigned" />
+        </id>
+        
+        <property name="peerConsumed" type="int" />
+
+        <array name="awardConsumed" table="raffle_raffledynamic_awardconsumed">
+          <key column="raffle_raffledynamic_id" />
+          <list-index column="raffle_raffledynamic_awardconsumed_key" />
+          <element type="int" column="raffle_raffledynamic_awardconsumed_value" />
+        </array>
+
+        <array name="awardTorn" table="raffle_raffle_awardtorn">
+          <key column="raffle_raffledynamic_id" />
+          <list-index column="raffle_raffledynamic_awardtorn_key" />
+          <element type="int" column="raffle_raffledynamic_awardtorn_value" />
+        </array>
+    </class>
+</hibernate-mapping>

@@ -190,7 +190,7 @@
   <target name="adminadd" description="增加管理员帐户">
     <input message="username:" addproperty="adminadd.username" defaultvalue="root"/>
     <input message="password:" addproperty="adminadd.password" defaultvalue="password" />
-    <java classname="cn.mydit.xxiang.admin.cli.AdminAdd" fork="true" dir="${destdir}">
+    <java classname="com.github.scausidc.chu.user.cli.AdminAdd" fork="true" dir="${destdir}">
       <classpath refid="classpath" />
       <arg value="${adminadd.username}" />
       <arg value="${adminadd.password}" />
@@ -199,7 +199,7 @@
 
   <target name="admindel" description="删除管理员帐户">
     <input message="username:" addproperty="admindel.username" defaultvalue="root"/>
-    <java classname="cn.mydit.xxiang.admin.cli.AdminAdd" fork="true" dir="${destdir}">
+    <java classname="com.github.scausidc.chu.user.cli.AdminAdd" fork="true" dir="${destdir}">
       <classpath refid="classpath" />
       <arg value="${admindel.username}" />
     </java>

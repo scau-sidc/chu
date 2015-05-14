@@ -1,0 +1,1 @@
+http://localhost:8080/chu/raffle/raffle.api?peerPending=100000&awardName=谢谢惠顾,脑残粉,茶婊绿,高端黑,东北银,土豪金&awardCapacity=0,1000,100,10,5,1&awardSlicing=0,100,1000,10000,20000,100000&awardShewing=0,0,0,0,0,0
