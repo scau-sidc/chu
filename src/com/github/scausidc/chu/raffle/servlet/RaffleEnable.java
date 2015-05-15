@@ -14,7 +14,6 @@ import com.alibaba.fastjson.*;
 
 import static com.github.scausidc.chu.Constants.*;
 import static com.github.scausidc.chu.nyafx.hj.Jsonizer.*;
-import static com.github.scausidc.chu.nyafx.hj.Parser.*;
 import com.github.scausidc.chu.raffle.core.*;
 import com.github.scausidc.chu.raffle.dao.*;
 import com.github.scausidc.chu.raffle.model.*;
@@ -41,6 +40,8 @@ public class RaffleEnable extends HttpServlet
     /** 启动/继续抽奖
      * <br />
      * 第一次启动时会根据 Raffle 生成 RaffleDynamic, 后继调用此接口会重载之前序列化的 RaffleDynamic.
+     * <br />
+     * 抽奖已在启动状态下调用此接口, 会重载 RaffleDynamic, 可能导致超出奖品数量. 该漏洞将在稍后修正.
      * <pre style="font-size:12px">
 
        <strong>请求</strong>
@@ -72,10 +73,13 @@ public class RaffleEnable extends HttpServlet
 
             this.raffleDao.update(raffle);
 
-            this.rdCache.load(id);
-            RaffleDynamic rd = this.rdCache.get(id);
+            RaffleDynamic rd = this.rdDao.get(id);
             if (rd == null)
                 this.rdDao.create(raffle);
+
+            this.rdCache.load(id);
+
+            this.rdDao.commit();
 
             rd = this.rdCache.get(id);
             System.out.println(rd.getPeerConsumed());

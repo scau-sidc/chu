@@ -36,7 +36,7 @@ import com.github.scausidc.chu.user.exception.*;
    <i>原session key失效</i>
 
    <strong>例外</strong>
-   parsed by {@link com.github.scausidc.chu.sys.servlet.ExceptionHandler ExceptionHandler}
+   parsed by {@link com.github.scausidc.chu.nyafx.servlet.ExceptionHandler ExceptionHandler}
    <i>只要发生例外密码就不会变更</i>
 
    <strong>样例</strong>暂无

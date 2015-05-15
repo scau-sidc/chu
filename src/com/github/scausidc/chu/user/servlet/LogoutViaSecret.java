@@ -36,7 +36,7 @@ import com.github.scausidc.chu.user.exception.*;
    attributes refer to {@link Json#jsonizeUser(User) Json}
 
    <strong>例外</strong>
-   parsed by {@link com.github.scausidc.chu.sys.servlet.ExceptionHandler ExceptionHandler}
+   parsed by {@link com.github.scausidc.chu.nyafx.servlet.ExceptionHandler ExceptionHandler}
 
    <strong>样例</strong>暂无
  * </pre>

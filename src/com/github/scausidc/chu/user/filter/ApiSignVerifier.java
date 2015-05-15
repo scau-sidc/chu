@@ -29,7 +29,7 @@ import com.github.scausidc.chu.user.exception.*;
    <strong>例外</strong>
    LoggedOutException       : 当没有既存的 secret 时;
    UnauthorizedException    : 当 secret 无法匹配时;
-   parsed by {@link com.github.scausidc.chu.sys.servlet.ExceptionHandler ExceptionHandler}
+   parsed by {@link com.github.scausidc.chu.nyafx.servlet.ExceptionHandler ExceptionHandler}
  * </pre>
  */
 public class ApiSignVerifier

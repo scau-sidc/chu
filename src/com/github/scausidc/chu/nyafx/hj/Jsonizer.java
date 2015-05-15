@@ -51,5 +51,6 @@ public class Jsonizer
 
 
   // CONFIG
-    public static final JSONObject JSONIZER_CONFIG_USER = (JSONObject)JSONObject.parse("{'.':8, 'salt':1, 'pass':1, 'secret':1}");
+    public static final JSONObject JSONIZER_CONFIG_USER     = (JSONObject)JSONObject.parse("{'.':8, 'salt':1, 'pass':1, 'secret':1}");
+    public static final JSONObject JSONIZER_CONFIG_AWARDED  = (JSONObject)JSONObject.parse("{'.':8, 'passcode':1}");
 }

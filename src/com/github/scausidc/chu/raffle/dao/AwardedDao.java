@@ -37,11 +37,18 @@ public class AwardedDao extends DaoBase<Awarded>
     }
 
   // EXTENDED
-    public Awarded create(Long raffleId, int award)
+    public Awarded createTransient(Long raffleId, int award)
     {
         Awarded a = new Awarded(raffleId, award);
 
         a.setPasscode(this.crypto.randomBytes(8));
+
+        return(a);
+    }
+
+    public Awarded create(Long raffleId, int award)
+    {
+        Awarded a = this.createTransient(raffleId, award);
 
         this.save(a);
 

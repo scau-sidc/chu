@@ -37,7 +37,7 @@ public class RaffleCRUD extends HttpServlet
     {
         this.raffleDao      = RaffleDao.getInstance();
 
-        this.inProps = JSON.parseObject("{'.':4, 'title':0, 'metainfo':0, 'disableOnExhausted':0, 'fallbackEnabled':0, 'peerPending':0}");
+        this.inProps = JSON.parseObject("{'.':4, 'title':0, 'metainfo':0, 'disableOnExhausted':16, 'fallbackEnabled':16, 'peerPending':0}");
 
     }
 

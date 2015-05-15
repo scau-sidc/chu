@@ -8,41 +8,46 @@ import java.util.Map;
 
 import static com.github.cuter44.nyafx.dao.EntityNotFoundException.entFound;
 import static com.github.cuter44.nyafx.servlet.Params.*;
+import com.github.cuter44.nyafx.crypto.*;
+import com.alibaba.fastjson.*;
 
+import static com.github.scausidc.chu.nyafx.hj.Jsonizer.*;
 import static com.github.scausidc.chu.Constants.*;
 import com.github.scausidc.chu.raffle.core.*;
 import com.github.scausidc.chu.raffle.dao.*;
 import com.github.scausidc.chu.raffle.model.*;
 
-@WebServlet("/raffle/evaluate.api")
-public class Evaluate extends HttpServlet
+@WebServlet("/raffle/draw.api")
+public class Draw extends HttpServlet
 {
     private static final String ID = "id";
 
-    protected RaffleDao raffleDao;
-    protected Drawer    drawer;
+    protected CryptoBase    crypto;
+    protected RaffleDao     raffleDao;
+    protected Drawer        drawer;
 
     @Override
     public void init()
     {
+        this.crypto     = CryptoBase.getInstance();
         this.raffleDao  = RaffleDao.getInstance();
         this.drawer     = Drawer.getInstance();
 
         return;
     }
 
-    /** 模拟抽奖
+    /** 抽奖
      *
      * <pre style="font-size:12px">
 
        <strong>请求</strong>
-        POST /raffle/evaluate.api
+        POST /raffle/draw.api
 
        <strong>参数</strong>
         id  :long   , 必需, ID
 
        <strong>响应</strong>
-        text/plain; charset=utf-8
+        application/json; charset=utf-8; class={@link com.github.scuasidc.chu.raffle.model.Awarded Awarded}
         ${peer1}:${award1}
         ${peer2}:${award2}
         ...
@@ -58,20 +63,20 @@ public class Evaluate extends HttpServlet
         throws ServletException, IOException
     {
         req.setCharacterEncoding("utf-8");
+
         try
         {
-
             this.raffleDao.begin();
 
             Long id = needLong(req, ID);
 
-            Map<Integer, Integer> awardeds = this.drawer.evaluate(id);
+            Awarded a = this.drawer.draw(id);
 
-            resp.setContentType("text/plain; charset=utf-8");
-            PrintWriter out = resp.getWriter();
+            JSONObject json = (JSONObject)jsonize(null, a, JSONIZER_CONFIG_AWARDED);
 
-            for (Map.Entry<Integer, Integer> e:awardeds.entrySet())
-                out.println(e.getKey()+":"+e.getValue());
+            json.put("passcode", this.crypto.bytesToHex(a.getPasscode()));
+
+            write(resp, json);
         }
         catch (Exception ex)
         {

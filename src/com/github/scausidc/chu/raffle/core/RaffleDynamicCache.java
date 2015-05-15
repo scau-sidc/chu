@@ -40,10 +40,24 @@ public class RaffleDynamicCache
     }
 
   // CACHE
+    public boolean isEnabled(Long id)
+    {
+        return(
+            Boolean.TRUE.equals(this.enableds.get(id))
+        );
+    }
+
     public void load(Long id)
     {
         Raffle          r   = (Raffle)entFound(this.raffleDao.get(id));
-        RaffleDynamic   rd  = (RaffleDynamic)entFound(this.rdDao.get(id));
+        RaffleDynamic   rd  = this.rdDao.get(id);
+
+        if (rd == null)
+        {
+            this.enableds.put(id, false);
+
+            return;
+        }
 
         this.raffles.put(id, rd);
         this.enableds.put(id, r.isEnabled());

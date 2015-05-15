@@ -22,7 +22,7 @@ import com.alibaba.fastjson.*;
    application/json
 
    <strong>例外</strong>
-   parsed by {@link com.github.scausidc.chu.sys.servlet.ExceptionHandler ExceptionHandler}
+   parsed by {@link com.github.scausidc.chu.nyafx.servlet.ExceptionHandler ExceptionHandler}
 
    <strong>样例</strong>
     GET http://localhost:8080/muuga/config/list.api HTTP/1.1

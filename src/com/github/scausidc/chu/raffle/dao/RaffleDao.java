@@ -38,7 +38,7 @@ public class RaffleDao extends DaoBase<Raffle>
 
         r.setEnabled(Boolean.FALSE);
         r.setDisableOnExhausted(Boolean.TRUE);
-        r.setFallbackEnabled(Boolean.TRUE);
+        r.setFallbackEnabled(Boolean.FALSE);
 
         this.save(r);
 

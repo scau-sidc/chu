@@ -14,7 +14,6 @@ import com.alibaba.fastjson.*;
 
 import static com.github.scausidc.chu.Constants.*;
 import static com.github.scausidc.chu.nyafx.hj.Jsonizer.*;
-import static com.github.scausidc.chu.nyafx.hj.Parser.*;
 import com.github.scausidc.chu.raffle.dao.*;
 import com.github.scausidc.chu.raffle.core.*;
 import com.github.scausidc.chu.raffle.model.*;

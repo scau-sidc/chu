@@ -68,8 +68,55 @@ public class Drawer
 
   // EXPOSED
     public Awarded draw(Long raffleId)
+        throws IllegalStateException
     {
-        return(null);
+        Raffle rf = (Raffle)entFound(this.raffleDao.get(raffleId));
+
+        RaffleDynamic rd = this.rdCache.get(raffleId);
+        if (rd == null)
+            throw(new IllegalStateException("Raffle disabled, draw failed. id="+raffleId));
+
+        int award = this.draw(rf, rd);
+
+        while (true)
+        {
+            Integer[] awardTorn = rd.getAwardTorn();
+
+            int awardTornExpected = awardTorn[award] + rf.getAwardSlicing()[award];
+            awardTorn[award] = awardTornExpected;
+
+            if (awardTorn[award] == awardTornExpected)
+                break;
+        }
+
+        while (true)
+        {
+            Integer[] awardConusmed = rd.getAwardConsumed();
+
+            int awardConsumedExpected = awardConusmed[award] + 1;
+            awardConusmed[award] = awardConsumedExpected;
+
+            if (awardConusmed[award] == awardConsumedExpected)
+                break;
+        }
+
+        while (true)
+        {
+            int peerConsumed = rd.getPeerConsumed() + 1;
+            rd.setPeerConsumed(peerConsumed);
+            if (rd.getPeerConsumed() == peerConsumed)
+                break;
+        }
+
+        if (!this.rdCache.isEnabled(raffleId))
+            throw(new IllegalStateException("Raffle disabled, draw failed. id="+raffleId));
+
+        Awarded a = this.awardedDao.createTransient(raffleId, award);
+
+        if ((award != 0) || (rf.isFallbackEnabled()))
+            this.awardedDao.save(a);
+
+        return(a);
     }
 
     /** evaluate raffle
@@ -77,24 +124,24 @@ public class Drawer
      */
     public Map<Integer, Integer> evaluate(Long raffleId)
     {
-        Raffle r = this.raffleDao.get(raffleId);
-        RaffleDynamic rd = new RaffleDynamic(r);
+        Raffle rf = (Raffle)entFound(this.raffleDao.get(raffleId));
+        RaffleDynamic rd = new RaffleDynamic(rf);
 
-        Integer[] awardCapacity = r.getAwardCapacity();
+        Integer[] awardCapacity = rf.getAwardCapacity();
         int totalAwardCapacity = 0;
         for (int i=1; i<awardCapacity.length; i++)
             totalAwardCapacity += awardCapacity[i];
 
         Map<Integer, Integer> awardeds = new HashMap<Integer, Integer>(totalAwardCapacity);
 
-        int p = r.getPeerPending();
+        int p = rf.getPeerPending();
         for (int i=0; i<p; i++)
         {
-            int a = this.draw(r, rd);
+            int a = this.draw(rf, rd);
             if (a!=0)
             {
                 rd.getAwardConsumed()[a] += 1;
-                rd.getAwardTorn()[a] += r.getAwardSlicing()[a];
+                rd.getAwardTorn()[a] += rf.getAwardSlicing()[a];
 
                 awardeds.put(i, a);
             }

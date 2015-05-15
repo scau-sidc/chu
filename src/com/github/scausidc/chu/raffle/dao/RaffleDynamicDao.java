@@ -41,9 +41,9 @@ public class RaffleDynamicDao extends DaoBase<RaffleDynamic>
 
     public RaffleDynamic create(Raffle r)
     {
-        RaffleDynamic rd = this.create(r);
+        RaffleDynamic rd = this.createTransient(r);
 
-        this.save(r);
+        this.save(rd);
 
         return(rd);
     }
