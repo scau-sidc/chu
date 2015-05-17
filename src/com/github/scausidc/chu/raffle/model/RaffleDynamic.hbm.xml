@@ -16,7 +16,7 @@
           <element type="int" column="raffle_raffledynamic_awardconsumed_value" />
         </array>
 
-        <array name="awardTorn" table="raffle_raffle_awardtorn">
+        <array name="awardTorn" table="raffle_raffledynamic_awardtorn">
           <key column="raffle_raffledynamic_id" />
           <list-index column="raffle_raffledynamic_awardtorn_key" />
           <element type="int" column="raffle_raffledynamic_awardtorn_value" />

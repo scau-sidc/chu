@@ -48,12 +48,6 @@ public class Draw extends HttpServlet
 
        <strong>响应</strong>
         application/json; charset=utf-8; class={@link com.github.scuasidc.chu.raffle.model.Awarded Awarded}
-        ${peer1}:${award1}
-        ${peer2}:${award2}
-        ...
-        <i>每行一个, 表示 ${peer} 抽中 ${award} 奖品</i>
-        <i>保底奖不被记录</i>
-
 
        </pre>
      *

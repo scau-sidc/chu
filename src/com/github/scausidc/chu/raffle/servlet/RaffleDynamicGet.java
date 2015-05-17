@@ -15,69 +15,57 @@ import com.alibaba.fastjson.*;
 import static com.github.scausidc.chu.Constants.*;
 import static com.github.scausidc.chu.nyafx.hj.Jsonizer.*;
 import com.github.scausidc.chu.raffle.dao.*;
-import com.github.scausidc.chu.raffle.core.*;
 import com.github.scausidc.chu.raffle.model.*;
 
-@WebServlet("/raffle/disable.api")
-public class RaffleDisable extends HttpServlet
+@WebServlet("/raffle/dynamic/get.api")
+public class RaffleDynamicGet extends HttpServlet
 {
-    private static final String ID              = "id";
+    private static final String ID = "id";
 
-    protected RaffleDao             raffleDao;
-    protected RaffleDynamicDao      rdDao;
-    protected RaffleDynamicCache    rdCache;
+    protected RaffleDynamicDao rdDao;
 
     @Override
     public void init()
     {
-        this.raffleDao  = RaffleDao.getInstance();
         this.rdDao      = RaffleDynamicDao.getInstance();
-        this.rdCache    = RaffleDynamicCache.getInstance();
 
         return;
     }
 
-    /** 中止抽奖
+    /** 取得当前的抽奖活动数据
      * <br />
-     * 中止前会保存 checkpoint, 从取得 checkpoint 到写入数据库期间的中奖会丢弃.
-     * <br />
-     * 中止后在重新开始前需要 cooldown, 以排空需要丢弃的中奖请求, 时长视乎服务器性能而定.
+     * 取得的内容依据 SerializeDaemon 的写入间隔会有所延迟, 默认的间隔为 15s
      *
      * <pre style="font-size:12px">
 
        <strong>请求</strong>
-        POST /raffle/enable.api
+        POST /raffle/dynamic/get.api
 
        <strong>参数</strong>
-        id                  :long           , 必需, ID
+        id  :long   , 必需, ID
 
        <strong>响应</strong>
-        application/json; charset=utf-8; class={@link com.github.scausidc.chu.raffle.model.Raffle Raffle}
+        application/json; charset=utf-8; class={@link com.github.scausidc.chu.raffle.model.RaffleDynamic RaffleDynamic}
 
        </pre>
      *
      */
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException
     {
         req.setCharacterEncoding("utf-8");
         try
         {
-            this.raffleDao.begin();
+            this.rdDao.begin();
 
             Long id = needLong(req, ID);
-            Raffle raffle = (Raffle)entFound(this.raffleDao.get(id));
 
-            raffle.setEnabled(Boolean.FALSE);
+            RaffleDynamic rd = (RaffleDynamic)entFound(this.rdDao.get(id));
 
-            this.raffleDao.update(raffle);
+            rdDao.commit();
 
-            this.rdCache.disable(id);
-
-            this.raffleDao.commit();
-
-            write(resp, jsonize(null, raffle, null));
+            write(resp, jsonize(null, rd, null));
         }
         catch (Exception ex)
         {
@@ -86,7 +74,7 @@ public class RaffleDisable extends HttpServlet
         }
         finally
         {
-            this.raffleDao.close();
+            this.rdDao.close();
         }
 
         return;

@@ -6,6 +6,11 @@
         version="3.0">
   <display-name>chu</display-name>
 
+
+  <listener>
+    <listener-class>com.github.scausidc.chu.raffle.servlet.RaffleDynamicSerializeListener</listener-class>
+  </listener>
+
   <!--
   <servlet>
     <servlet-name></servlet-name>

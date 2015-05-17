@@ -17,6 +17,8 @@ public class RaffleDynamicCache
     protected RaffleDynamicDao rdDao;
     protected Map<Long, RaffleDynamic> raffles;
     protected Map<Long, Boolean> enableds;
+    protected long lastSerialization = 0;
+    protected Map<Long, Long> lastAccess;
 
     public RaffleDynamicCache()
     {
@@ -24,6 +26,7 @@ public class RaffleDynamicCache
         this.rdDao = RaffleDynamicDao.getInstance();
         this.raffles = new HashMap<Long, RaffleDynamic>();
         this.enableds = new HashMap<Long, Boolean>();
+        this.lastAccess = new HashMap<Long, Long>();
 
         return;
     }
@@ -37,6 +40,32 @@ public class RaffleDynamicCache
     public static RaffleDynamicCache getInstance()
     {
         return(Singleton.instance);
+    }
+
+  // SERIALIZE
+
+    public void serialize(long id)
+    {
+        RaffleDynamic rd = this.raffles.get(id);
+        if (rd == null)
+            return;
+
+        this.rdDao.getThisSession().merge(rd);
+
+        return;
+    }
+
+    public void serialize()
+    {
+        long t = System.currentTimeMillis();
+
+        for (long id:this.lastAccess.keySet())
+            if (this.lastAccess.get(id) > this.lastSerialization)
+                this.serialize(id);
+
+        this.lastSerialization = t;
+
+        return;
     }
 
   // CACHE
@@ -73,9 +102,7 @@ public class RaffleDynamicCache
         {
             this.enableds.put(id, Boolean.FALSE);
 
-            RaffleDynamic rd = this.raffles.get(id);
-            if (rd != null)
-                this.rdDao.getThisSession().merge(rd);
+            this.serialize(id);
         }
 
         return;
@@ -96,7 +123,10 @@ public class RaffleDynamicCache
             }
 
         // if (Boolean.TRUE.equals(enabled))
+        // {
+            this.lastAccess.put(id, System.currentTimeMillis());
             return(this.raffles.get(id));
+        // }
 
     }
 

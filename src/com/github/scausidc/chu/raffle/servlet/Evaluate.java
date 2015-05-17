@@ -67,6 +67,8 @@ public class Evaluate extends HttpServlet
 
             Map<Integer, Integer> awardeds = this.drawer.evaluate(id);
 
+            this.raffleDao.commit();
+
             resp.setContentType("text/plain; charset=utf-8");
             PrintWriter out = resp.getWriter();
 

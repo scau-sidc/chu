@@ -81,11 +81,6 @@ public class RaffleEnable extends HttpServlet
 
             this.rdDao.commit();
 
-            rd = this.rdCache.get(id);
-            System.out.println(rd.getPeerConsumed());
-            System.out.println(rd.getAwardConsumed());
-            System.out.println(rd.getAwardTorn());
-
             write(resp, jsonize(null, raffle, null));
         }
         catch (Exception ex)
