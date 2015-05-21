@@ -25,14 +25,16 @@ import com.github.scausidc.chu.raffle.dao.*;
    GET/POST /awarded/search.api
 
    <strong>参数</strong>
-   id       :long[]     , 逗号分隔, uid
-
+    id       :long[]     , 逗号分隔, uid
+   <i>鉴权</i>
+    uid     :long       , uid
+    s       :hex        , 签名
    <i>分页</i>
-   start    :int        , 返回结果的起始笔数, 缺省从 0 开始
-   size     :int        , 返回结果的最大笔数, 缺省使用服务器配置
+    start    :int        , 返回结果的起始笔数, 缺省从 0 开始
+    size     :int        , 返回结果的最大笔数, 缺省使用服务器配置
    <i>排序</i>
-   by       :string             , 按该字段...
-   order    :string=asc|desc    , 顺序|逆序排列
+    by       :string             , 按该字段...
+    order    :string=asc|desc    , 顺序|逆序排列
 
    <strong>响应</strong>
    application/json; array; class={com.github.scausidc.chu.raffle.model.Awarded Awarded}

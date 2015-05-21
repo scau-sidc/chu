@@ -74,6 +74,10 @@ public class RaffleCRUD extends HttpServlet
                                                           建议值为 awardSlicing[i], 最小值为 1, 最大值为 awardSlicing[i]*2-1
                                                           为 0 则不使用多普勒分布
 
+       <i>鉴权</i>
+        uid     :long       , uid
+        s       :hex        , 签名
+
        <strong>响应</strong>
         application/json; charset=utf-8; class={@link com.github.scausidc.chu.raffle.model.Raffle Raffle}
 
@@ -151,6 +155,9 @@ public class RaffleCRUD extends HttpServlet
 
        <strong>参数</strong>
         id  :long   , ID.
+       <i>鉴权</i>
+        uid     :long       , uid
+        s       :hex        , 签名
 
        <strong>响应</strong>
         204 No Content

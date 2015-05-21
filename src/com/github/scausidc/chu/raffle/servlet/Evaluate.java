@@ -39,7 +39,10 @@ public class Evaluate extends HttpServlet
         POST /raffle/evaluate.api
 
        <strong>参数</strong>
-        id  :long   , 必需, ID
+        id      :long       , 必需, ID
+       <i>鉴权</i>
+        uid     :long       , uid
+        s       :hex        , 签名
 
        <strong>响应</strong>
         text/plain; charset=utf-8

@@ -29,7 +29,9 @@ import com.github.scausidc.chu.user.exception.*;
    POST /user/logout-via-secret.api
 
    <strong>参数</strong>
-   uid:long, uid
+   uid  :long   , uid
+   <i>鉴权</i>
+   s    :hex    , 签名
 
    <strong>响应</strong>
    application/json; class=user.model.User

@@ -37,6 +37,15 @@
   <filter-mapping>
     <filter-name>ApiSignVerifier</filter-name>
     <url-pattern>/security/vrfy-sign.api</url-pattern>
+    <url-pattern>/user/logout-via-secret.api</url-pattern>
+    <url-pattern>/awarded/search.api</url-pattern>
+    <url-pattern>/awarded/redeem.api</url-pattern>
+    <url-pattern>/raffle/evaluate.api</url-pattern>
+    <url-pattern>/raffle/raffle.api</url-pattern>
+    <url-pattern>/raffle/enable.api</url-pattern>
+    <url-pattern>/raffle/disable.api</url-pattern>
+    <url-pattern>/raffle/dynamic/disable.api</url-pattern>
+
   </filter-mapping>
 
   <welcome-file-list>

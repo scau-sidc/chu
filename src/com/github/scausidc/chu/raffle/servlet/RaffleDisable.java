@@ -49,7 +49,10 @@ public class RaffleDisable extends HttpServlet
         POST /raffle/enable.api
 
        <strong>参数</strong>
-        id                  :long           , 必需, ID
+        id      :long       , 必需, ID
+       <i>鉴权</i>
+        uid     :long       , uid
+        s       :hex        , 签名
 
        <strong>响应</strong>
         application/json; charset=utf-8; class={@link com.github.scausidc.chu.raffle.model.Raffle Raffle}
