@@ -4,6 +4,8 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.github.scausidc.chu.raffle.model.Raffle" table="raffle_raffle">
+        <cache usage="nonstrict-read-write"/>
+
         <id	name="id" type="long">
             <generator class="identity"/>
         </id>
