@@ -46,16 +46,17 @@ public class Redeem extends HttpServlet
      * <pre style="font-size:12px">
 
        <strong>请求</strong>
-        POST /raffle/dynamic/get.api
+        POST /awarded/redeemed.api
 
        <strong>参数</strong>
-        id      :long       , 必需, ID
+        id          :long       , 必需, Awarded ID
+        passcode    :hex        , 必需, passcode
        <i>鉴权</i>
         uid     :long       , uid
         s       :hex        , 签名
 
        <strong>响应</strong>
-        application/json; charset=utf-8; class={@link com.github.scausidc.chu.raffle.model.RaffleDynamic RaffleDynamic}
+        application/json; charset=utf-8; class={@link com.github.scausidc.chu.raffle.model.Awarded Awarded}
 
        </pre>
      *
@@ -67,8 +68,8 @@ public class Redeem extends HttpServlet
         req.setCharacterEncoding("utf-8");
         try
         {
-            Long id = needLong(req, ID);
-            byte[] passcode = getByteArray(req, PASSCODE);
+            Long    id       = needLong(req, ID);
+            byte[]  passcode = needByteArray(req, PASSCODE);
 
             this.awardedDao.begin();
 
