@@ -14,8 +14,8 @@ import com.github.scausidc.chu.raffle.core.*;
 import com.github.scausidc.chu.raffle.dao.*;
 import com.github.scausidc.chu.raffle.model.*;
 
-@WebServlet("/raffle/evaluate.api")
-public class Evaluate extends HttpServlet
+@WebServlet("/raffle/emulate.api")
+public class Emulate extends HttpServlet
 {
     private static final String ID = "id";
 
@@ -36,7 +36,7 @@ public class Evaluate extends HttpServlet
      * <pre style="font-size:12px">
 
        <strong>请求</strong>
-        POST /raffle/evaluate.api
+        POST /raffle/emulate.api
 
        <strong>参数</strong>
         id      :long       , 必需, ID
