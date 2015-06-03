@@ -88,7 +88,7 @@ public class Login extends HttpServlet
 
             json.put("secret", encryptedSecret);
 
-            write(resp, jsonize(null, u, null));
+            write(resp, json);
 
             this.userDao.commit();
         }
