@@ -66,6 +66,8 @@ public class Draw extends HttpServlet
 
             Awarded a = this.drawer.draw(id);
 
+            this.raffleDao.commit();
+
             JSONObject json = (JSONObject)jsonize(null, a, JSONIZER_CONFIG_AWARDED);
 
             json.put("passcode", this.crypto.bytesToHex(a.getPasscode()));
