@@ -55,7 +55,7 @@ public class Drawer
 
             int r = rd.getAwardTorn()[i] - peerConsumed;
             if (r<=0)
-                continue;
+                return(i);
 
             int p = this.rand.nextInt(r);
             if (p == 0)
