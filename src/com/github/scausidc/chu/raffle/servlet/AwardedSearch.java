@@ -50,6 +50,7 @@ import com.github.scausidc.chu.raffle.dao.*;
 public class AwardedSearch extends HttpServlet
 {
     private static final String ID = "id";
+    private static final String RAFFLE = "raffle";
 
     private static final String START = "start";
     private static final String SIZE = "size";
@@ -76,6 +77,7 @@ public class AwardedSearch extends HttpServlet
         try
         {
             List<Long>      id     = getLongList(req, ID);
+            List<Long>      raffle = getLongList(req, RAFFLE);
 
             Integer     start   = getInt(req, START);
             Integer     size    = getInt(req, SIZE);
@@ -87,6 +89,9 @@ public class AwardedSearch extends HttpServlet
 
             if (id!=null)
                 dc.add(Restrictions.in("id", id));
+
+            if (raffle!=null)
+                dc.add(Restrictions.in("raffle", raffle));
 
             if ("asc".equals(order))
                 dc.addOrder(Order.asc(by));
